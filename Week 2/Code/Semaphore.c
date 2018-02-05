@@ -7,14 +7,16 @@
 
 sem_t mySemaphore;
 char myString[60];
+FILE* file;
 
 void* threadOne (void* arg) {
    //wait
    sem_wait(&mySemaphore);
    //Critical Section
-   strcpy(myString, "Shared Resource manipulated by first process.");
+   strcpy(myString, "Shared Resource manipulated by first process.\n");
    sleep(2);
-   printf("%s\n", myString);
+   printf("%s", myString);
+	fprintf(file, "%s", myString);
    //Signal
    sem_post(&mySemaphore);
 }
@@ -23,14 +25,16 @@ void* threadTwo (void* arg) {
    //wait
    sem_wait(&mySemaphore);
    //Critical Section
-   strcpy(myString, "Second process accessing shared resource now.");
+   strcpy(myString, "Second process accessing shared resource now.\n");
    sleep(2);
-   printf("%s\n", myString);
+   printf("%s", myString);
+	fprintf(file, "%s", myString);
    //Signal
    sem_post(&mySemaphore);
 }
 
 int main (){
+	file = fopen("semaphore_output.txt", "w");
    sem_init(&mySemaphore, 0, 1);
    pthread_t thread1,thread2;
    pthread_create(&thread1,NULL,threadOne,NULL);
@@ -41,6 +45,10 @@ int main (){
    sem_destroy(&mySemaphore);
    return 0;
 }
+
+
+
+
 
 
 
