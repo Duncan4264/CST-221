@@ -1,0 +1,2 @@
+Shared Resource manipulated by first process.
+Second process accessing shared resource now.
