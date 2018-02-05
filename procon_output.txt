@@ -1,0 +1,10 @@
+Producer is creating number: 21
+Producer is creating number: 24
+Consumer is consuming number : 21
+Producer is creating number: 5
+Consumer is consuming number : 24
+Producer is creating number: 32
+Consumer is consuming number : 5
+Producer is creating number: 30
+Consumer is consuming number : 32
+Consumer is consuming number : 30
